@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+    vote:
+        build: 
+            context: ./vote
+            dockerfile: Dockerfile.watch
+        volumes: 
+            - ./vote/src:/app/src
+            - ./vote/public:/app/public
+        ports:
+            - "3000:3000"
+        environment: 
+            - CI=true
