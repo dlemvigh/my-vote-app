@@ -9,7 +9,6 @@ COPY tsconfig.json .
 
 RUN npm test -- --watchAll=false
 RUN npm run build
-RUN ls -l
 
 FROM node:12-alpine as runtime
 WORKDIR /app
