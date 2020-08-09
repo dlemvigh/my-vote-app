@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   vote:    
+    container_name: vote
     image: dle/vote:latest
     build: 
       context: ./vote
@@ -11,9 +12,13 @@ services:
       - ./vote/public:/app/public
     ports:
       - "3000:3000"
+    networks: 
+      - frontend
+      - backend
     environment: 
       - CI=true
   result:
+    container_name: result
     image: dle/result:latest
     build:
       context: ./result
@@ -25,10 +30,14 @@ services:
       - "5000:5000"
       - "3572:3572"
       - "35729:35729"
+    networks: 
+      - frontend
+      - backend
     environment: 
       - CI=true
       - HOST=0.0.0.0
   worker:
+    container_name: worker
     image: dle/worker:latest
     build:
       context: ./worker
@@ -36,5 +45,10 @@ services:
     volumes:
       - ./worker/src:/app/src
     ports:
-      - "4000:5000"
+      - "4000:4000"
+    networks: 
+      - backend
 
+networks: 
+  frontend:
+  backend:
