@@ -32,6 +32,9 @@ services:
     image: dle/worker:latest
     build:
       context: ./worker
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.watch
+    volumes:
+      - ./worker:/app
     ports:
-      - "4000:80"
+      - "4000:5000"
+

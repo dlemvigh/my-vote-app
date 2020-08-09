@@ -1,0 +1,9 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:latest AS build
+WORKDIR /app
+
+COPY *.csproj ./
+RUN dotnet restore
+
+COPY . ./
+
+ENTRYPOINT [ "dotnet", "watch", "run"]
