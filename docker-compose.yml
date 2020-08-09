@@ -13,13 +13,6 @@ services:
       - "3000:3000"
     environment: 
       - CI=true
-  worker:
-    image: dle/worker:latest
-    build:
-      context: ./worker
-      dockerfile: Dockerfile
-    ports:
-      - "4000:5000"
   result:
     image: dle/result:latest
     build:
@@ -35,3 +28,10 @@ services:
     environment: 
       - CI=true
       - HOST=0.0.0.0
+  worker:
+    image: dle/worker:latest
+    build:
+      context: ./worker
+      dockerfile: Dockerfile
+    ports:
+      - "4000:80"
