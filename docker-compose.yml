@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   vote:    
-    image: dle/vote:latests
+    image: dle/vote:latest
     build: 
       context: ./vote
       dockerfile: Dockerfile.watch
@@ -13,8 +13,15 @@ services:
       - "3000:3000"
     environment: 
       - CI=true
+  worker:
+    image: dle/worker:latest
+    build:
+      context: ./worker
+      dockerfile: Dockerfile
+    ports:
+      - "4000:5000"
   result:
-    image: dle/result:latests
+    image: dle/result:latest
     build:
       context: ./result
       dockerfile: Dockerfile.watch
