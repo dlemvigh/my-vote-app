@@ -12,3 +12,18 @@ services:
             - "3000:3000"
         environment: 
             - CI=true
+  result:
+    image: dle/result:latests
+    build:
+      context: ./result
+      dockerfile: Dockerfile.watch
+    volumes: 
+      - ./result/src:/app/src
+      - ./result/public:/app/public
+    ports:
+      - "5000:5000"
+      - "3572:3572"
+      - "35729:35729"
+    environment: 
+      - CI=true
+      - HOST=0.0.0.0
