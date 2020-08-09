@@ -34,7 +34,7 @@ services:
       context: ./worker
       dockerfile: Dockerfile.watch
     volumes:
-      - ./worker:/app
+      - ./worker/src:/app/src
     ports:
       - "4000:5000"
 
