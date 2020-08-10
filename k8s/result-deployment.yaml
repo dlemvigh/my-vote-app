@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  labels:
+    io.kompose.service: result
+  name: result-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      io.kompose.service: result
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      labels:
+        io.kompose.network/backend: "true"
+        io.kompose.network/frontend: "true"
+        io.kompose.service: result
+    spec:
+      containers:
+      - env:
+        - name: CI
+          value: "true"
+        - name: HOST
+          value: 0.0.0.0
+        image: dlemvigh/result:latest
+        name: result
+        ports:
+        - containerPort: 5000
+        - containerPort: 3572
+        - containerPort: 35729
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+status: {}

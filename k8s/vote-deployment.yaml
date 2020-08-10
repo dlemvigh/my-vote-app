@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  labels:
+    io.kompose.service: vote
+  name: vote-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      io.kompose.service: vote
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      labels:
+        io.kompose.network/backend: "true"
+        io.kompose.network/frontend: "true"
+        io.kompose.service: vote
+    spec:
+      containers:
+      - env:
+        - name: CI
+          value: "true"
+        image: dlemvigh/vote:latest
+        name: vote
+        ports:
+        - containerPort: 5000
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+status: {}
