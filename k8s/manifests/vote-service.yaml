@@ -7,6 +7,7 @@ metadata:
   labels:
     io.kompose.service: vote
   name: vote-service
+  namespace: my-vote
 spec:
   ports:
   - name: "3000"

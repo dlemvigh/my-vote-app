@@ -7,6 +7,7 @@ metadata:
   labels:
     io.kompose.service: worker
   name: worker-service
+  namespace: my-vote
 spec:
   ports:
   - name: "4000"

@@ -5,13 +5,14 @@ metadata:
     kompose.cmd: kompose convert
     kompose.version: 1.21.0 (992df58d8)
   labels:
-    io.kompose.service: vote
-  name: vote-deployment
+    io.kompose.service: worker
+  name: worker-deployment
+  namespace: my-vote
 spec:
   replicas: 2
   selector:
     matchLabels:
-      io.kompose.service: vote
+      io.kompose.service: worker
   strategy: {}
   template:
     metadata:
@@ -20,17 +21,13 @@ spec:
         kompose.version: 1.21.0 (992df58d8)
       labels:
         io.kompose.network/backend: "true"
-        io.kompose.network/frontend: "true"
-        io.kompose.service: vote
+        io.kompose.service: worker
     spec:
       containers:
-      - env:
-        - name: CI
-          value: "true"
-        image: dlemvigh/vote:latest
-        name: vote
+      - image: dlemvigh/worker:latest
+        name: worker
         ports:
-        - containerPort: 5000
+        - containerPort: 80
         resources: {}
       restartPolicy: Always
       serviceAccountName: ""

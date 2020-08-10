@@ -7,6 +7,7 @@ metadata:
   labels:
     io.kompose.service: result
   name: result-deployment
+  namespace: my-vote
 spec:
   replicas: 2
   selector:

@@ -7,6 +7,7 @@ metadata:
   labels:
     io.kompose.service: result
   name: result-service
+  namespace: my-vote
 spec:
   ports:
   - name: "5000"
