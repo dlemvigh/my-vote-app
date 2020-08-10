@@ -2,28 +2,22 @@ version: "3.8"
 
 services:
   vote:    
-    container_name: vote
+    image: dle/vote:latest
     build: 
       context: ./vote
-      dockerfile: Dockerfile.watch
-    volumes: 
-      - ./vote/src:/app/src
-      - ./vote/public:/app/public
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3000:5000"
     networks: 
       - frontend
       - backend
     environment: 
       - CI=true
   result:
-    container_name: result
+    image: dle/result:latest
     build:
       context: ./result
-      dockerfile: Dockerfile.watch
-    volumes: 
-      - ./result/src:/app/src
-      - ./result/public:/app/public
+      dockerfile: Dockerfile
     ports:
       - "5000:5000"
       - "3572:3572"
@@ -35,14 +29,12 @@ services:
       - CI=true
       - HOST=0.0.0.0
   worker:
-    container_name: worker
+    image: dle/worker:latest
     build:
       context: ./worker
-      dockerfile: Dockerfile.watch
-    volumes:
-      - ./worker/src:/app/src
+      dockerfile: Dockerfile
     ports:
-      - "4000:4000"
+      - "4000:80"
     networks: 
       - backend
 
