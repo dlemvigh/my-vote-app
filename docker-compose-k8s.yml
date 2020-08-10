@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   vote:    
-    image: dle/vote:latest
+    image: dlemvigh/vote:latest
     build: 
       context: ./vote
       dockerfile: Dockerfile
@@ -14,7 +14,7 @@ services:
     environment: 
       - CI=true
   result:
-    image: dle/result:latest
+    image: dlemvigh/result:latest
     build:
       context: ./result
       dockerfile: Dockerfile
@@ -29,7 +29,7 @@ services:
       - CI=true
       - HOST=0.0.0.0
   worker:
-    image: dle/worker:latest
+    image: dlemvigh/worker:latest
     build:
       context: ./worker
       dockerfile: Dockerfile
