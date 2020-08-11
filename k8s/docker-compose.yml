@@ -37,6 +37,13 @@ services:
       - "4000:80"
     networks: 
       - backend
+  api:
+    container_name: api
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    networks: 
+      - backend
 
 networks: 
   frontend:

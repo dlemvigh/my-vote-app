@@ -45,6 +45,15 @@ services:
       - "4000:4000"
     networks: 
       - backend
+  api:
+    container_name: api
+    build:
+      context: ./api
+      dockerfile: Dockerfile.watch
+    volumes:
+      - ./api/src:/app/src
+    networks: 
+      - backend
 
 networks: 
   frontend:
