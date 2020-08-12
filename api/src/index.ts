@@ -1,5 +1,20 @@
-const message: string = "Hello, world!";
+import express from "express";
+import { graphqlHTTP } from "express-graphql";
 
-setInterval(() => {
-  console.log(message, new Date().toLocaleString());
-}, 1000);
+import schema from "./gql/schema";
+
+const app = express();
+
+const PORT = process.env.PORT || 8080;
+
+app.use(
+  "/",
+  graphqlHTTP({
+    schema,
+    graphiql: true,
+  })
+);
+
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`);
+});
